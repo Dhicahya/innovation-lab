@@ -30,16 +30,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'status' => 'required|in:1,0'
+            'name' => 'required|string'
         ]);
-
-        $category = new Category();
-        $category->name = $request->name;
-        $category->status = $request->status;
-        $category->save();
-
-        return response()->redirectTo('/category');
+        Category::create($request->all());
+        return redirect()->route('category.index');
     }
 
     /**
@@ -64,15 +58,10 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|string',
-            'status' => 'required|in:1,0'
+            'name' => 'required|string'
         ]);
 
-        $category->name = $request->name;
-        $category->status = $request->status;
-        $category->save();
-
-        return response()->redirectTo('/category');
+        $category->update($request->all());
     }
 
     /**
@@ -82,5 +71,12 @@ class CategoryController extends Controller
     {
         $category->delete();
         return response()->redirectTo('/category');
+    }
+
+    public function status(Category $category)
+    {
+        $category->status = !$category->status;
+        $category->save();
+        return redirect()-> route('category.index');
     }
 }
