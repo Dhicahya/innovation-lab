@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title', 'Home') - Belajar</title>
+    <title>@yield('title', 'Home') - Innovation Lab</title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,6 +35,16 @@
             <div id="content">
 
                 @include('layouts.navbar')
+
+                @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                 <!-- Begin Page Content -->
                 @yield('content')

@@ -62,6 +62,7 @@ class CategoryController extends Controller
         ]);
 
         $category->update($request->all());
+        return redirect()-> route('category.index');
     }
 
     /**
@@ -70,7 +71,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return response()->redirectTo('/category');
+        return redirect()->route('category.index');    
     }
 
     public function status(Category $category)

@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('category_id');
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

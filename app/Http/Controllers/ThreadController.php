@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Thread;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller
@@ -21,7 +23,9 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        return view('thread.create');
+        $user =  User::all();
+        $category = Category::all();
+        return view('thread.create', compact("user","category"));
     }
 
     /**
@@ -30,21 +34,14 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|numeric',
-            'category_id' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            'category_id' => 'required|exists:categories,id',
             'title' => 'required|string',
             'content' => 'required|string',
             'status' => 'required|in:1,0'
         ]);
 
-        $thread = new Thread();
-        $thread->user_id = $request->user_id;
-        $thread->category_id = $request->category_id;
-        $thread->title = $request->title;
-        $thread->content = $request->content;
-        $thread->status = $request->status;
-        $thread->save();
-
+        Thread::create($request->all());
         return response()->redirectTo('/thread');
     }
 
@@ -70,21 +67,13 @@ class ThreadController extends Controller
     public function update(Request $request, Thread $thread)
     {
         $request->validate([
-            'user_id' => 'required|numeric',
-            'category_id' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            'category_id' => 'required|exists:categories,id',
             'title' => 'required|string',
             'content' => 'required|string',
             'status' => 'required|in:1,0'
         ]);
-
-        $thread->user_id = $request->user_id;
-        $thread->category_id = $request->category_id;
-        $thread->title = $request->title;
-        $thread->content = $request->content;
-        $thread->status = $request->status;
-        $thread->save();
-
-        return response()->redirectTo('/thread');
+        $thread->update($request->all());
     }
 
     /**
@@ -94,5 +83,12 @@ class ThreadController extends Controller
     {
         $thread->delete();
         return response()->redirectTo('/thread');
+    }
+
+    public function status(Thread $thread)
+    {
+        $thread->status = !$thread->status;
+        $thread->save();
+        return redirect()-> route('thread.index');
     }
 }
