@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Thread;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('thread_id');
-            $table->string('content');
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Thread::class);
+            $table->text('content');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

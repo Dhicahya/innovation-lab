@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $data = User::all();
-        return view('user.index', compact('data'));
+        return view('pages.admin.user.index', compact('data'));
     }
 
     /**
@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        return view('pages.admin.user.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
 
         ]);
         User::create($request->all());
-        return redirect()->route('user.index');
+        return redirect()->route('pages.admin.user.index');
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.update', compact('user'));
+        return view('pages.admin.user.update', compact('user'));
     }
 
     /**
@@ -67,7 +67,7 @@ class UserController extends Controller
         ]);
 
         $user->update($request->all());
-        return redirect()->route('user.index');
+        return redirect()->route('pages.admin.user.index');
     }
 
     /**
@@ -76,13 +76,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('pages.admin.user.index');
     }
 
     public function status(User $user)
     {
         $user->status = !$user->status;
         $user->save();
-        return redirect()-> route('user.index');
+        return redirect()-> route('pages.admin.user.index');
     }
 }

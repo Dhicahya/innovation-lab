@@ -13,7 +13,7 @@ class CommentController extends Controller
     public function index()
     {
         $data = Comment::all();
-        return view('comment.index', compact('data'));
+        return view('pages.admin.comment.index', compact('data'));
     }
 
     /**
@@ -21,7 +21,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        return view('comment.create');
+        return view('pages.admin.comment.create');
     }
 
     /**
@@ -34,14 +34,9 @@ class CommentController extends Controller
             'content' => 'required|string',
             'status' => 'required|in:1,0'
         ]);
-
-        $comment = new Comment();
-        $comment->thread_id = $request->thread_id;
-        $comment->content = $request->content;
-        $comment->status = $request->status;
-        $comment->save();
-
-        return response()->redirectTo('/comment');    }
+        Comment::create($request->all());
+        return response()->redirectTo('pages.admin.comment.index');    
+    }
 
     /**
      * Display the specified resource.
@@ -56,7 +51,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        return view('comment.update', compact('comment'));
+        return view('pages.admin.comment.update', compact('comment'));
     }
 
     /**
@@ -70,12 +65,9 @@ class CommentController extends Controller
             'status' => 'required|in:1,0'
         ]);
 
-        $comment->thread_id = $request->thread_id;
-        $comment->content = $request->content;
-        $comment->status = $request->status;
-        $comment->save();
-
-        return response()->redirectTo('/comme');    }
+        $comment->update($request->all());
+        return redirect()->route('pages.admin.comment.index');    
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -83,6 +75,6 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-        return response()->redirectTo('/comment');
+        return redirect()->route('pages.admin.index');
     }
 }

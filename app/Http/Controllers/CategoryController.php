@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category::all();
-        return view('category.index', compact('data'));
+        return view('pages.admin.category.index', compact('data'));
     }
 
     /**
@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        return view('pages.admin.category.create');
     }
 
     /**
@@ -33,7 +33,7 @@ class CategoryController extends Controller
             'name' => 'required|string'
         ]);
         Category::create($request->all());
-        return redirect()->route('category.index');
+        return redirect()->route('pages.admin.category.index');
     }
 
     /**
@@ -49,7 +49,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category.update', compact('category'));
+        return view('pages.admin.category.update', compact('category'));
     }
 
     /**
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         ]);
 
         $category->update($request->all());
-        return redirect()-> route('category.index');
+        return redirect()-> route('pages.admin.category.index');
     }
 
     /**
@@ -71,13 +71,13 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('category.index');    
+        return redirect()->route('pages.admin.category.index');    
     }
 
     public function status(Category $category)
     {
         $category->status = !$category->status;
         $category->save();
-        return redirect()-> route('category.index');
+        return redirect()-> route('pages.admin.category.index');
     }
 }

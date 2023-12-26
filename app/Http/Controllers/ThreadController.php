@@ -15,7 +15,7 @@ class ThreadController extends Controller
     public function index()
     {
         $data = Thread::all();
-        return view('thread.index', compact('data'));
+        return view('pages.admin.thread.index', compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ThreadController extends Controller
     {
         $user =  User::all();
         $category = Category::all();
-        return view('thread.create', compact("user","category"));
+        return view('pages.admin.thread.create', compact("user","category"));
     }
 
     /**
@@ -42,7 +42,7 @@ class ThreadController extends Controller
         ]);
 
         Thread::create($request->all());
-        return response()->redirectTo('/thread');
+        return redirect()->route('pages.admin.thread.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        return view('thread.update', compact('thread'));
+        return view('pages.admin.thread.update', compact('thread'));
     }
 
     /**
@@ -74,6 +74,7 @@ class ThreadController extends Controller
             'status' => 'required|in:1,0'
         ]);
         $thread->update($request->all());
+        return redirect()-> route('pages.admin.thread.index');
     }
 
     /**
@@ -82,13 +83,13 @@ class ThreadController extends Controller
     public function destroy(Thread $thread)
     {
         $thread->delete();
-        return response()->redirectTo('/thread');
+        return redirect()->route('pages.admin.thread.index');
     }
 
     public function status(Thread $thread)
     {
         $thread->status = !$thread->status;
         $thread->save();
-        return redirect()-> route('thread.index');
+        return redirect()-> route('pages.admin.thread.index');
     }
 }
