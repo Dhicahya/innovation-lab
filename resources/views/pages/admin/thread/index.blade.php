@@ -31,7 +31,7 @@
                         <th scope="row">{{$item->id}}</th>
                         <td>{{$item->name}}</td>
                         <td>
-                            <a class="btn btn-secondary" href="{{route('pages.admin.thread.status', $item)}}">
+                            <a class="btn btn-secondary" href="{{route('thread.status', $item)}}">
                             {{$item->status ?
                             "Aktif":"Tidak Aktif"}}</a>
                         </td>

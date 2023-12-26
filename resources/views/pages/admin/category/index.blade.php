@@ -30,7 +30,7 @@
                         <td>{{$item->name}}</td>
                         <td>
                             <div class="custom-control custom-switch">
-                                <input onclick="window.location.href='{{ route('pages.admin.category.status', $item) }}'"
+                                <input onclick="window.location.href='{{ route('category.status', $item) }}'"
                                     {{ $item->status ? 'checked' : '' }} type="checkbox"
                                     class="custom-control-input" id="customSwitch{{ $index }}">
                                 <label class="custom-control-label" for="customSwitch{{ $index }}">
