@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-6">
           <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
-            <a href="#intro" class="scrollto">Home</a>
+            <a href="#hero" class="scrollto">Home</a>
             <a href="#about" class="scrollto">About</a>
           </nav>
         </div>

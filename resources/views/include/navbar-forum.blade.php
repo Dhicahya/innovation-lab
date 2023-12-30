@@ -1,3 +1,5 @@
+
+  
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center shadow-sm">
       <div class="container d-flex align-items-center justify-content-between">
@@ -25,7 +27,8 @@
                       </form>
                   </li>
                   <li>
-                      <a class="getstarted scrollto" href="#about">
+                      <a class="getstarted scrollto" href="" type="button" id="threadModalLink"
+                          data-toggle="modal" data-target="#threadModal">
                           <iconify-icon icon="jam:write-f" class="mr-2"></iconify-icon>
                           Buat Thread</a>
                   </li>
@@ -77,6 +80,49 @@
               <div class="modal-footer">
                   <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                   <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="modal fade" id="threadModal" tabindex="-1" aria-labelledby="threadModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="threadModalLabel">Ready to Leave?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="form-group">
+                          <label for="textTitle" class="col-form-label">Judul</label>
+                          <input type="text" class="form-control" id="textTitle">
+                      </div>
+                      <div class="form-group">
+                        <label for="selectCategory">Pilih Kategori</label>
+                        <select class="form-control" id="selectCategory">
+                        <option value="" selected disabled>--Pilih Kategori--</option>
+                          @foreach (App\Models\Category::all() as $category )
+                          <option value="{{$category->id}}">{{ $category->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="textContent" class="col-form-label">Konten</label>
+                          <textarea class="form-control" id="textContent"></textarea>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                    </button>
+                  <button type="button" class="btn btn-primary">
+                    <i class="fab fa-telegram-plane"></i>
+                    </button>
               </div>
           </div>
       </div>

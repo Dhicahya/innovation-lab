@@ -10,7 +10,6 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="getstarted scrollto" href="{{route('login')}}">Login</a></li>
           <li><a class="getstarted scrollto ml-2" href="{{route('register')}}">Register</a></li>
         </ul>
