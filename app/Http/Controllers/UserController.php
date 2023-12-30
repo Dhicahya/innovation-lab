@@ -63,11 +63,15 @@ class UserController extends Controller
         $request->validate([
             'nama' => 'required|string',
             'email' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'nullable|string'
         ]);
 
+        if ($request['password'] == ''){
+            unset($request['password']);
+        }
+
         $user->update($request->all());
-        return redirect()->route('pages.admin.user.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -76,13 +80,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('pages.admin.user.index');
+        return redirect()->route('user.index');
     }
 
     public function status(User $user)
     {
         $user->status = !$user->status;
         $user->save();
-        return redirect()-> route('pages.admin.user.index');
+        return redirect()-> route('user.index');
     }
 }

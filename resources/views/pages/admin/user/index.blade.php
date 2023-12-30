@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Page Title')
 
@@ -19,6 +19,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
+                        <th scope="col">Username</th>
                         <th scope="col">Email</th>                        
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
@@ -29,6 +30,7 @@
                     <tr>
                         <th scope="row">{{$index+1}}</th>
                         <td>{{$item->nama}}</td>
+                        <td>{{$item->username}}</td>
                         <td>{{$item->email}}</td>
                         <td>
                             <div class="custom-control custom-switch">

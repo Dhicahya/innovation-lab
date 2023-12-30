@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Ubah Jenis User')
 
@@ -20,12 +20,16 @@
                     <input type="text" name="nama" class="form-control" id="nama" value="{{$user->nama}}" required>
                 </div>
                 <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" value="{{$user->username}}" required>
+                </div>
+                <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="text" name="email" class="form-control" id="email" value="{{$user->email}}" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password (isi jika ingin ganti password)</label>
-                    <input type="text" name="password" class="form-control" id="password" value="" required>
+                    <input type="text" name="password" class="form-control" id="password" value="">
                 </div>
                 <button type="submit" class="btn btn-primary">Ubah</button>
             </form>

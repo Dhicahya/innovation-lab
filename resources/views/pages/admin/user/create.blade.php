@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Tambah User')
 
@@ -17,6 +17,10 @@
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" name="nama" class="form-control" id="nama" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>

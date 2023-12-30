@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ThreadController;
@@ -37,3 +38,14 @@ Route::get('user/{user}/status', [UserController::class, 'status']) ->name('user
 Route::resource("comment", CommentController::class);
 Route::get('comment/{comment}/delete', [CommentController::class, 'destroy']);
 Route::get('comment/{comment}/status', [CommentController::class, 'status']) ->name('comment.status');
+
+Route::get("forum", function(){return view('pages.forum');})->name('forum');
+
+Route::get("login", [AuthController::class, 'login'])->name('login');
+Route::post("login", [AuthController::class, 'loginStore'])->name('loginStore');
+Route::get("logout", [AuthController::class, 'logout'])->name('logout');
+
+Route::get("register", [AuthController::class, 'register'])->name('register');
+Route::post("register", [AuthController::class, 'registerStore'])->name('registerStore');
+
+

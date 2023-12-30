@@ -16,11 +16,13 @@
 <body>
     
     
-    @include('include.navbar')
+    @include('include.navbar-forum')
 
-    @yield('content')
+    <div class="d-flex flex-column min-vh-100">
+      @yield('content')
 
-    @include('include.footer')
+      @include('include.footer')
+    </div>
 
 
 
