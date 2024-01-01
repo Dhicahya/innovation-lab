@@ -41,10 +41,12 @@ Route::get('comment/{comment}/status', [CommentController::class, 'status']) ->n
 
 Route::get("forum", function(){return view('pages.forum');})->name('forum');
 
+Route::get("profil", function(){return view('pages.profil');})->name('profil');
+
+
 Route::get("login", [AuthController::class, 'login'])->name('login');
 Route::post("login", [AuthController::class, 'loginStore'])->name('loginStore');
 Route::get("logout", [AuthController::class, 'logout'])->name('logout');
-
 Route::get("register", [AuthController::class, 'register'])->name('register');
 Route::post("register", [AuthController::class, 'registerStore'])->name('registerStore');
 
