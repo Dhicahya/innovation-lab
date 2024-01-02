@@ -87,7 +87,7 @@ $(document).ready(function () {
   });
 </script>
 
-<script>
+{{-- <script>
   $('#threadModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var recipient = button.data('whatever') // Extract info from data-* attributes
@@ -98,7 +98,7 @@ $(document).ready(function () {
   modal.find('.modal-body input').val(recipient)
 })
 
-</script>
+</script> --}}
 
 <script>
   $(document).ready(function() {

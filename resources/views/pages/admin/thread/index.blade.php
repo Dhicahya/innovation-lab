@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
+                        <th scope="col">Judul</th>
                         <th scope="col">Kategori</th>
                         <th scope="col">title</th>
                         <th scope="col">status</th>

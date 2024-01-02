@@ -6,16 +6,17 @@
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6 my-5">
                     <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Profil Pengguna</h5>
+                        <div class="card-header text-white" style="background-image: radial-gradient(circle at 50% -20.71%, #2affff 0, #46adf9 50%, #2e4d6e 100%)">
+                            <h5 class="mb-0">Profil</h5>
                         </div>
                         <div class="card-body text-center">
-                            <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="rounded-circle mb-3"
+                            <img src="/img/undraw_profile.svg" alt="Profile Picture" class="rounded-circle mb-3"
                                 style="width: 150px; height: 150px;">
-                            <h4 class="mb-2">{{ auth()->user()->nama}}</h4>
-                            <p class="text-muted mb-2">{{ auth()->user()->username }}</p>
-                            <p class="text-muted mb-3">{{ auth()->user()->email }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">
+                            <h4 class="mb-2">{{ $user->nama }}</h4>
+                            <p class="text-muted mb-2">{{ $user->username }}</p>
+                            <p class="text-muted mb-3">{{ $user->email }}</p>
+                            <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#editProfileModal">
+                                <i class="fas fa-user-edit"></i>
                                 Edit Profil
                             </button>
                         </div>
@@ -31,40 +32,42 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profil</h5>
+                    <h5 class="modal-title" id="editProfileModalLabel"><i class="fas fa-user-edit"></i> Edit Profil</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{route('profilStore')}}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="inputName">Nama</label>
-                            <input type="text" class="form-control" id="inputName" value="John Doe" required>
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{$user->nama}}" required>
                         </div>
                         <div class="form-group">
                             <label for="inputUsername">Username</label>
-                            <input type="text" class="form-control" id="inputUsername" value="johndoe" required>
+                            <input type="text" class="form-control" id="username" name="username" value="{{$user->username}}" required>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control" id="inputEmail" value="john.doe@example.com"
+                            <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}"
                                 required>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Password</label>
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         </div>
                         <div class="form-group">
                             <label for="inputConfirmPassword">Konfirmasi Password</label>
-                            <input type="password" class="form-control" id="inputConfirmPassword"
+                            <input type="password" class="form-control" id="password-confirm" name="password_confirmation"
                                 placeholder="Konfirmasi Password">
                         </div>
                         <div class="form-group">
                             <label for="inputProfilePicture">Foto Profil</label>
-                            <input type="file" class="form-control-file" id="inputProfilePicture">
+                            <input type="file" class="form-control-file" id="profil_img" name="profil_img">
                         </div>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan Perubahan</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     </form>
                 </div>
             </div>

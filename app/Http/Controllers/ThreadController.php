@@ -31,19 +31,7 @@ class ThreadController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'category_id' => 'required|exists:categories,id',
-            'title' => 'required|string',
-            'content' => 'required|string',
-            'status' => 'required|in:1,0'
-        ]);
-
-        Thread::create($request->all());
-        return redirect()->route('pages.admin.thread.index');
-    }
+   
 
     /**
      * Display the specified resource.

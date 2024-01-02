@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-          <img src="assets/img/hero-image.png" class="img-fluid animated" alt="">
+          <img src="assets/img/hero-home.svg" class="img-fluid animated mt-5 pt-lg-5" style="height: 90%" alt="">
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
-          <h2>About Us</h2>
+          <h2>About</h2>
         </div>
 
         <div class="row content">
