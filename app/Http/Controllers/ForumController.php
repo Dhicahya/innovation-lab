@@ -9,7 +9,7 @@ class ForumController extends Controller
 {
     public function show(Request $request)
     {
-        $thread = Thread::all();
+        $thread = Thread::orderByDesc('id')->get();
         return view('pages.forum', compact('thread'));
     }
 
@@ -33,4 +33,14 @@ class ForumController extends Controller
         Thread::create($data);
         return redirect()->route('forum');
     }
+
+    public function showThreadDetail(Request $request, $threadId)
+    {
+        $thread = Thread::findOrFail($threadId);
+        $thread->load('comments');
+
+        return view('pages.detail', compact('thread'));
+    }
+
+    
 }

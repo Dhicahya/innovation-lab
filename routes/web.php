@@ -40,7 +40,6 @@ Route::prefix('/admin/')->middleware('auth')->group(function(){
     Route::get('comment/{comment}/delete', [CommentController::class, 'destroy'])->name('comment.delete');
     Route::get('comment/{comment}/status', [CommentController::class, 'status']) ->name('comment.status');
 
-    Route::get("detail", [DetailController::class, 'show'])->name('detail');
 
 });
 
@@ -48,9 +47,12 @@ Route::get('/', function(){return view('pages.home');})->name('home');
 
 Route::get("forum", [ForumController::class, 'show'])->name('forum');
 
+Route::get('forum/thread/{threadId}', [ForumController::class, 'showThreadDetail'])->name('thread.detail');
+
 Route::middleware('auth')->group(function(){
     Route::get("profil", [ProfilController::class, 'index'])->name('profil');
     Route::put("profil", [ProfilController::class, 'store'])->name('profilStore');
+
     
     Route::post("buat-thread", [ForumController::class, 'store'])->name(('buat-thread'));
 

@@ -9,7 +9,7 @@
                         <div class="card mt-5 shadow">
                             <div class="card-body">
                                 <div class="user-info mb-3">
-                                    <span class="username">{{ $item->user->nama }}</span>
+                                    <span class="username">{{ '@'.$item->user->nama }}</span>
                                 </div>
                                 <h5 class="card-title"><strong>{{ $item->title }}</strong></h5>
                                 <p class="card-text">{{ $item->category->name }}</p>
@@ -24,14 +24,14 @@
                                         </a>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <button type="button" class="btn btn-success comment-btn" data-toggle="collapse"
-                                            data-target="#commentForm1"><i class="fas fa-comment"></i></button>
+                                        <a href="{{ route('thread.detail', $item) }}" type="button" class="btn btn-success comment-btn" >
+                                            <i class="fas fa-comment"></i></a>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Form komentar yang awalnya tersembunyi -->
-                            <div class="collapse mt-3" id="commentForm1">
+                            {{-- <div class="collapse mt-3" id="commentForm1">
                                 <div class="card card-body">
                                     <form>
                                         <div class="form-group">
@@ -50,7 +50,7 @@
                                 <ul class="list-group">
                                     <!-- Komentar akan ditambahkan secara dinamis melalui JavaScript -->
                                 </ul>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

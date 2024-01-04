@@ -1,12 +1,12 @@
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
 
    <!-- Bootstrap core JavaScript-->
  <script src="/vendor/jquery/jquery.min.js"></script>
@@ -18,7 +18,7 @@
  <script src="/js/sb-admin-2.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="/assets/js/main.js"></script>
 
 <!-- Bootstrap JS dan Popper.js -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -36,7 +36,7 @@ crossorigin="anonymous"></script>
 integrity="sha384-mDEJzy/jAzVg8dcsF5M6w+5ECz+i14E7acO7Pb8eGg9kUtA2pH5FkRdXPFJuyHyi"
 crossorigin="anonymous"></script>
 
-
+<!-- menyembunyikan komentar -->
 <script>
 $(document).ready(function () {
   $(".comment-btn").click(function () {

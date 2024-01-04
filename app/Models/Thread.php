@@ -20,4 +20,10 @@ class Thread extends Model
     public function user() : BelongsTo {
         return $this->belongsTo(user::class);
     }
+
+    public function comments() : HasMany {
+        return $this->hasMany(Comment::class);
+    }
+
+    
 }
