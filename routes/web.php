@@ -25,20 +25,23 @@ Route::prefix('/admin/')->middleware('auth')->group(function(){
 
 
     Route::resource("category", CategoryController::class);
-    Route::get('category/{category}/delete', [CategoryController::class, 'destroy']);
+    Route::get('category/{category}/delete', [CategoryController::class, 'destroy'])->name('category.delete');
     Route::get('category/{category}/status', [CategoryController::class, 'status']) ->name('category.status'); 
 
     Route::resource("thread", ThreadController::class);
-    Route::get('thread/{thread}/delete', [ThreadController::class, 'destroy']);
+    Route::get('thread/{thread}/delete', [ThreadController::class, 'destroy'])->name('thread.delete');
     Route::get('thread/{thread}/status', [ThreadController::class, 'status']) ->name('thread.status');
 
     Route::resource("user", UserController::class);
-    Route::get('user/{user}/delete', [UserController::class, 'destroy']);
+    Route::get('user/{user}/delete', [UserController::class, 'destroy'])->name('user.delete');
     Route::get('user/{user}/status', [UserController::class, 'status']) ->name('user.status'); 
 
     Route::resource("comment", CommentController::class);
-    Route::get('comment/{comment}/delete', [CommentController::class, 'destroy']);
+    Route::get('comment/{comment}/delete', [CommentController::class, 'destroy'])->name('comment.delete');
     Route::get('comment/{comment}/status', [CommentController::class, 'status']) ->name('comment.status');
+
+    Route::get("detail", [DetailController::class, 'show'])->name('detail');
+
 });
 
 Route::get('/', function(){return view('pages.home');})->name('home');

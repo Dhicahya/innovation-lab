@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background: #3D4B64" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fa fa-lightbulb"></i>
         </div>
@@ -71,6 +71,13 @@
         <a class="nav-link" href="{{route('comment.index')}}">
             <i class="far fa-comment"></i>
             <span>Comment</span></a>
+    </li>
+
+     <!-- Nav Item - Home -->
+     <li class="nav-item">
+        <a class="nav-link" href="{{route('home')}}">
+            <i class="fas fa-home"></i>
+            <span>Home</span></a>
     </li>
 
 

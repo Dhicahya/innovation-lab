@@ -62,7 +62,7 @@ class ThreadController extends Controller
             'status' => 'required|in:1,0'
         ]);
         $thread->update($request->all());
-        return redirect()-> route('pages.admin.thread.index');
+        return redirect()-> route('thread.index');
     }
 
     /**
@@ -71,13 +71,13 @@ class ThreadController extends Controller
     public function destroy(Thread $thread)
     {
         $thread->delete();
-        return redirect()->route('pages.admin.thread.index');
+        return redirect()->route('thread.index');
     }
 
     public function status(Thread $thread)
     {
         $thread->status = !$thread->status;
         $thread->save();
-        return redirect()-> route('pages.admin.thread.index');
+        return redirect()-> route('thread.index');
     }
 }

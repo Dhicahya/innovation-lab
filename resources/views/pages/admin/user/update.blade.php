@@ -12,9 +12,13 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{route('user.update', $user)}}" method="POST">
+            <form action="{{route('user.update', $user)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <div class="mb-3">
+                    <label for="image_path" class="form-label">Foto</label>
+                    <input type="file" name="image_path" class="form-control" id="image_path" value="{{$user->image_path}}">
+                </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" name="nama" class="form-control" id="nama" value="{{$user->nama}}" required>

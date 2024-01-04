@@ -30,16 +30,18 @@
                     <tr>
                         <th scope="row">{{$item->id}}</th>
                         <td>{{$item->name}}</td>
+                        <td>{{$item->category->name}}</td>
+                        <td>{{$item->title}}</td>
                         <td>
                             <a class="btn btn-secondary" href="{{route('thread.status', $item)}}">
                             {{$item->status ?
                             "Aktif":"Tidak Aktif"}}</a>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="/thread/{{$item->id}}/edit">
+                            <a class="btn btn-primary" href="{{route('thread.edit', $item)}}">
                                 Edit
                             </a>
-                            <a class="btn btn-danger" onclick="deleteData('/thread/{{$item->id}}/delete')"> Hapus
+                            <a class="btn btn-danger" onclick="deleteData('{{route('thread.delete', $item)}}')"> Hapus
                             </a>
                         </td>
                     </tr>

@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Category</h1>
-        <a href="/category/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        <a href="/admin/category/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-plus fa-sm text-white-50"></i> Create Category</a>
     </div>
 
@@ -39,10 +39,10 @@
                             </div>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="/category/{{$item->id}}/edit">
+                            <a class="btn btn-primary" href="{{route('category.edit', $item)}}">
                                 Edit
                             </a>
-                            <a class="btn btn-danger" onclick="deleteData('/category/{{$item->id}}/delete')"> Hapus
+                            <a class="btn btn-danger" onclick="deleteData('{{route('category.delete', $item)}}')"> Hapus
                             </a>
                         </td>
                     </tr>

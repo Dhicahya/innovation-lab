@@ -18,6 +18,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
+                        <th scope="col">Foto</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>                        
@@ -29,6 +30,7 @@
                     @foreach ($data as $index=>$item)
                     <tr>
                         <th scope="row">{{$index+1}}</th>
+                        <td><img src="/storage/{{$item->image_path}}" style="height: 50px"></td>
                         <td>{{$item->nama}}</td>
                         <td>{{$item->username}}</td>
                         <td>{{$item->email}}</td>
@@ -43,10 +45,11 @@
                             </div>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="/user/{{$item->id}}/edit">
+                            <a class="btn btn-primary" href="{{route('user.edit', $item)}}">
                                 Edit
                             </a>
-                            <a class="btn btn-danger" onclick="deleteData('/user/{{$item->id}}/delete')"> Hapus
+                            <a class="btn btn-danger" onclick="deleteData('{{route('user.delete', $item)}}')"> 
+                                Hapus
                             </a>
                         </td>
                     </tr>

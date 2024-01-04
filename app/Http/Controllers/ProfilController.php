@@ -6,6 +6,8 @@ use App\Models\User;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class ProfilController extends Controller
 {
@@ -36,10 +38,17 @@ class ProfilController extends Controller
             'username' => 'required|string',
             'email' => 'required|string',
             'password' => 'nullable|string|confirmed',
-            'image_path' => "nullable|string"
+            'image_path' => "nullable|image"
         ]);
         if(!$data['password']){
             unset($data['password']);
+        }
+
+        if ($data['image_path']) {
+            $ext = $request->file('image_path')->getClientOriginalExtension();
+            // save to storage
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = str_replace('public/', '', $data['image_path']);
         }
 
         User::find(auth()->user()->id)->update($data);

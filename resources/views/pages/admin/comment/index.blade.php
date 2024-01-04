@@ -36,10 +36,10 @@
                             "Aktif":"Tidak Aktif"}}</a>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="/comment/{{$item->id}}/edit">
+                            <a class="btn btn-primary" href="/{{route('comment.edit', $item)}}">
                                 Edit
                             </a>
-                            <a class="btn btn-danger" onclick="deleteData('/comment/{{$item->id}}/delete')"> Hapus
+                            <a class="btn btn-danger" onclick="deleteData('{{route('comment.delete', $item)}}')"> Hapus
                             </a>
                         </td>
                     </tr>

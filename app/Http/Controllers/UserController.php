@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -29,13 +30,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'nama' => 'required|string',
             'email' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'image_path' => 'nullable|file'
 
         ]);
-        User::create($request->all());
+
+        if ($data['image_path']) {
+            $ext = $request->file('image_path')->getClientOriginalExtension();
+            // save to storage
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = str_replace('public/', '', $data['image_path']);
+        }
+
+        User::create($data);
         return redirect()->route('pages.admin.user.index');
     }
 
@@ -60,17 +70,26 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $data = $request->validate([
             'nama' => 'required|string',
             'email' => 'required|string',
-            'password' => 'nullable|string'
+            'password' => 'nullable|string',
+            'image_path' => 'nullable|file'
         ]);
 
-        if ($request['password'] == ''){
-            unset($request['password']);
+        if ($data['password'] == ''){
+            unset($data['password']);
         }
 
-        $user->update($request->all());
+        if ($data['image_path']) {
+            $ext = $request->file('image_path')->getClientOriginalExtension();
+            // save to storage
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = str_replace('public/', '', $data['image_path']);
+        }
+
+
+        $user->update($data);
         return redirect()->route('user.index');
     }
 
