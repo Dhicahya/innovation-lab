@@ -32,13 +32,14 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'nama' => 'required|string',
+            'username' => 'required|string',
             'email' => 'required|string',
             'password' => 'required|string',
             'image_path' => 'nullable|file'
 
         ]);
 
-        if ($data['image_path']) {
+        if (@$data['image_path']) {
             $ext = $request->file('image_path')->getClientOriginalExtension();
             // save to storage
             $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
@@ -46,7 +47,7 @@ class UserController extends Controller
         }
 
         User::create($data);
-        return redirect()->route('pages.admin.user.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -62,7 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('pages.admin.user.update', compact('user'));
+        return view('pages.user.update', compact('user'));
     }
 
     /**
@@ -72,6 +73,7 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'nama' => 'required|string',
+            'username' => 'required|string',
             'email' => 'required|string',
             'password' => 'nullable|string',
             'image_path' => 'nullable|file'
@@ -81,7 +83,7 @@ class UserController extends Controller
             unset($data['password']);
         }
 
-        if ($data['image_path']) {
+        if (@$data['image_path']) {
             $ext = $request->file('image_path')->getClientOriginalExtension();
             // save to storage
             $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
@@ -104,6 +106,12 @@ class UserController extends Controller
 
     public function status(User $user)
     {
+        if ($user->id == 1) {
+            return redirect()->route('user.index')->withErrors([
+                'status' => 'Tidak dapat mengubah status Super Admin!'
+            ]);
+        }
+        
         $user->status = !$user->status;
         $user->save();
         return redirect()-> route('user.index');

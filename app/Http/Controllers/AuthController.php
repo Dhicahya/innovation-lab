@@ -51,6 +51,12 @@ class AuthController extends Controller
             'email.exists'=>'Email belum terdaftar.'
         ]);
 
+        if (!User::where('email', $credentials['email'])->where('status', true)->first()) {
+            return back()->withErrors([
+            'email' => 'Akun Diblokir oleh Admin!',
+        ])->onlyInput('email');
+        }
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if(auth()->user()->role == 'admin'){

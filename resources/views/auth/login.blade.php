@@ -20,7 +20,7 @@
                             <form method="POST" action="{{ route('loginStore') }}">
                                 @csrf
                                 <div class="form-group mt-5 mb-4">
-                                    <input type="email" class="form-control" id="email"name="email" placeholder="Masukkan Email"
+                                    <input type="email" class="form-control" id="email"name="email" placeholder="Masukkan Email" value="{{ old('email') }}"
                                         required>
                                 </div>
                                 <div class="input-group my-4">

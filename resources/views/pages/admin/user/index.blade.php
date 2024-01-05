@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">User</h1>
-        <a href="/user/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        <a href="/admin/user/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-plus fa-sm text-white-50"></i> Create User</a>
     </div>
 
@@ -30,7 +30,13 @@
                     @foreach ($data as $index=>$item)
                     <tr>
                         <th scope="row">{{$index+1}}</th>
-                        <td><img src="/storage/{{$item->image_path}}" style="height: 50px"></td>
+                        <td>
+                            @if ($item->image_path)
+                            <img src="/storage/{{$item->image_path}}" style="height: 50px" alt="Profile Picture">  
+                            @else
+                            <img src="/img/undraw_profile.svg" style="height: 50px" alt="Profile Picture"   >    
+                            @endif                                
+                        </td>
                         <td>{{$item->nama}}</td>
                         <td>{{$item->username}}</td>
                         <td>{{$item->email}}</td>
