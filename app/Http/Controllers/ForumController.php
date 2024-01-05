@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
+use App\Models\Like;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -34,12 +36,37 @@ class ForumController extends Controller
         return redirect()->route('forum');
     }
 
-    public function showThreadDetail(Request $request, $threadId)
+    public function showThreadDetail(Thread $thread)
     {
-        $thread = Thread::findOrFail($threadId);
         $thread->load('comments');
 
         return view('pages.detail', compact('thread'));
+    }
+
+    public function showComment(Request $request, $commentId)
+    {
+        $comment = Comment::orderByDesc('id')->get();
+        
+    }
+
+    public function like(Thread $thread)
+    {
+        Like::create([
+            'thread_id'=>$thread->id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function dislike(Thread $thread)
+    {
+        Like::where([
+            'thread_id'=>$thread->id,
+            'user_id' => Auth::user()->id
+        ])->delete();
+
+        return redirect()->back();
     }
 
     

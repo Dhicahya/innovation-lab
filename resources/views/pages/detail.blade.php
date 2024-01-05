@@ -8,7 +8,7 @@
                     <div class="card mt-5 shadow">
                         <div class="card-body">
                             <div class="user-info mb-3">
-                                <span class="username">{{ '@'.$thread->user->nama }}</span>
+                                <span class="username">{{ '@'.(@$item->user->nama ?? 'Pengguna') }}</span>
                             </div>
                             <h5 class="card-title"><strong>{{ $thread->title }}</strong></h5>
                             <p class="card-text">{{ $thread->category->name }}</p>
@@ -17,9 +17,18 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="" class="btn btn-primary">
-                                        <i class="fa fa-thumbs-up"></i>
+                                    <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
+                                        <i class="far fa-thumbs-up"></i>
                                     </a>
+                                    {{-- @if ()
+                                    <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
+                                        <i class="far fa-thumbs-up"></i>
+                                    </a>    
+                                    @else
+                                    <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </a> 
+                                    @endif --}}
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <button type="button" class="btn btn-success comment-btn" data-toggle="collapse"
@@ -31,23 +40,34 @@
                         <!-- Form komentar yang awalnya tersembunyi -->
                         <div class="collapse mt-3" id="commentForm1">
                             <div class="card card-body">
-                                <form>
+                                <form method="POST" action="{{ route('comment.store') }}">
+                                    @csrf
+                                    <input type="hidden" name="thread_id" value="{{ $thread->id }}">
                                     <div class="form-group">
-                                        <label for="comment1">Tambahkan Komentar:</label>
-                                        <textarea class="form-control" id="comment1" rows="3"></textarea>
+                                        <label for="content">Tambahkan Komentar:</label>
+                                        <textarea class="form-control" id="content" name="content" rows="3"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary"><i
-                                            class="fas fa-paper-plane"></i></button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>
 
                         <!-- Daftar komentar -->
-                        <div class="card card-body mt-3 comment-list" style="display: none;">
-                            <h6 class="card-subtitle mb-2 text-muted">Komentar</h6>
+                        <div class="card">
+                            <div class="card-body ">
+                            <h4 class="card-title mb-2">Komentar</h4>
                             <ul class="list-group">
                                 <!-- Komentar akan ditambahkan secara dinamis melalui JavaScript -->
+                                @foreach ($thread->comments as $item)
+                                <div class="card my-1 p-2">
+                                    <span class="card-title">{{ '@'.(@$item->user->nama ?? 'Pengguna') }}</span>
+                                    <p class="card-text"> {{ $item->content }}</p> 
+                                </div>
+                                @endforeach
                             </ul>
+                            </div>
                         </div>
 
                     </div>

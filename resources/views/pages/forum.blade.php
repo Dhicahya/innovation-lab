@@ -9,7 +9,7 @@
                         <div class="card mt-5 shadow">
                             <div class="card-body">
                                 <div class="user-info mb-3">
-                                    <span class="username">{{ '@'.$item->user->nama }}</span>
+                                    <span class="username">{{ '@'. (@$item->user->nama ?? 'Pengguna') }}</span>
                                 </div>
                                 <h5 class="card-title"><strong>{{ $item->title }}</strong></h5>
                                 <p class="card-text">{{ $item->category->name }}</p>

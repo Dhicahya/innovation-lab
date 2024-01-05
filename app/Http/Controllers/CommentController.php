@@ -21,7 +21,8 @@ class CommentController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.comment.create');
+        $user = User::all();
+        return view('pages.admin.comment.create', compact("user"));
     }
 
     /**
@@ -29,13 +30,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'thread_id' => 'required|numeric',
             'content' => 'required|string',
-            'status' => 'required|in:1,0'
         ]);
-        Comment::create($request->all());
-        return response()->redirectTo('pages.admin.comment.index');    
+
+        $data['user_id'] = auth()->user()->id;
+
+        Comment::create($data);
+        return redirect()->route('thread.detail', $data['thread_id']);    
     }
 
     /**
@@ -43,7 +46,9 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        $thread = Thread::findOrFail($threadId);
+
+        return view('pages.detail', compact('comment'));        
     }
 
     /**
@@ -62,11 +67,10 @@ class CommentController extends Controller
         $request->validate([
             'thread_id' => 'required|numeric',
             'content' => 'required|string',
-            'status' => 'required|in:1,0'
         ]);
 
         $comment->update($request->all());
-        return redirect()->route('pages.admin.comment.index');    
+        return redirect()->route('comment.index');    
     }
 
     /**
@@ -75,6 +79,13 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-        return redirect()->route('pages.admin.index');
+        return redirect()->route('comment.index');
+    }
+
+    public function status(Comment $comment)
+    {
+        $comment->status = !$comment->status;
+        $comment->save();
+        return redirect()-> route('comment.index');
     }
 }

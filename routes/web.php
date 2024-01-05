@@ -47,7 +47,11 @@ Route::get('/', function(){return view('pages.home');})->name('home');
 
 Route::get("forum", [ForumController::class, 'show'])->name('forum');
 
-Route::get('forum/thread/{threadId}', [ForumController::class, 'showThreadDetail'])->name('thread.detail');
+Route::get('forum/thread/{thread}', [ForumController::class, 'showThreadDetail'])->name('thread.detail');
+
+Route::get('forum/thread/{thread}/like', [ForumController::class, 'like'])->name('thread.like');
+
+Route::get('forum/thread/{thread}/dislike', [ForumController::class, 'dislike'])->name('thread.dislike');
 
 Route::middleware('auth')->group(function(){
     Route::get("profil", [ProfilController::class, 'index'])->name('profil');
