@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,9 +26,15 @@ class Thread extends Model
         return $this->hasMany(Comment::class);
     }
 
-    // public function isLike() : boolean {
-    //     return $this->
-    // }
+    public function likes() : HasMany {
+        return $this->hasMany(Like::class);
+    }
+
+   
+    public function totalLike()
+    {
+        return $this->hasMany(Like::class)->count();
+    }
 
     
 }

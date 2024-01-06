@@ -20,7 +20,6 @@
                                     <div class="col-md-6">
                                         <a href="" class="btn btn-primary">
                                             <i class="fa fa-thumbs-up"></i>
-
                                         </a>
                                     </div>
                                     <div class="col-md-6 text-right">

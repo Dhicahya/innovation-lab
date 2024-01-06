@@ -40,6 +40,9 @@ Route::prefix('/admin/')->middleware('auth')->group(function(){
     Route::get('comment/{comment}/delete', [CommentController::class, 'destroy'])->name('comment.delete');
     Route::get('comment/{comment}/status', [CommentController::class, 'status']) ->name('comment.status');
 
+    Route::get('forum/thread/{thread}', [ForumController::class, 'showThreadDetail'])->name('thread.detail');
+    Route::get('forum/thread/{thread}/like', [ForumController::class, 'like'])->name('thread.like');
+    Route::get('forum/thread/{thread}/dislike', [ForumController::class, 'dislike'])->name('thread.dislike');
 
 });
 
@@ -47,11 +50,6 @@ Route::get('/', function(){return view('pages.home');})->name('home');
 
 Route::get("forum", [ForumController::class, 'show'])->name('forum');
 
-Route::get('forum/thread/{thread}', [ForumController::class, 'showThreadDetail'])->name('thread.detail');
-
-Route::get('forum/thread/{thread}/like', [ForumController::class, 'like'])->name('thread.like');
-
-Route::get('forum/thread/{thread}/dislike', [ForumController::class, 'dislike'])->name('thread.dislike');
 
 Route::middleware('auth')->group(function(){
     Route::get("profil", [ProfilController::class, 'index'])->name('profil');

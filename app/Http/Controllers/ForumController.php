@@ -43,7 +43,7 @@ class ForumController extends Controller
         return view('pages.detail', compact('thread'));
     }
 
-    public function showComment(Request $request, $commentId)
+    public function showComment(Comment $comment)
     {
         $comment = Comment::orderByDesc('id')->get();
         

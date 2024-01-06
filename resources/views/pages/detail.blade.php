@@ -19,7 +19,8 @@
                                 <div class="col-md-6">
                                     <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
                                         <i class="far fa-thumbs-up"></i>
-                                    </a>
+                                        ({{ $thread->totalLike() }})
+                                    </a>    
                                     {{-- @if ()
                                     <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
                                         <i class="far fa-thumbs-up"></i>
@@ -58,7 +59,7 @@
                         <div class="card">
                             <div class="card-body ">
                             <h4 class="card-title mb-2">Komentar</h4>
-                            <ul class="list-group">
+                            <div class="list-group">
                                 <!-- Komentar akan ditambahkan secara dinamis melalui JavaScript -->
                                 @foreach ($thread->comments as $item)
                                 <div class="card my-1 p-2">
@@ -66,7 +67,7 @@
                                     <p class="card-text"> {{ $item->content }}</p> 
                                 </div>
                                 @endforeach
-                            </ul>
+                            </div>
                             </div>
                         </div>
 

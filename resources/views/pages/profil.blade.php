@@ -31,7 +31,7 @@
                             @endif
                             
                             <h4 class="mb-2">{{ $user->nama }}</h4>
-                            <p class="text-muted mb-2">{{ $user->username }}</p>
+                            <p class="text-muted mb-2">{{ '@'.$user->username }}</p>
                             <p class="text-muted mb-3">{{ $user->email }}</p>
                             <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#editProfileModal">
                                 <i class="fas fa-user-edit"></i>
