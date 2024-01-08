@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('pages.user.update', compact('user'));
+        return view('pages.admin.user.update', compact('user'));
     }
 
     /**

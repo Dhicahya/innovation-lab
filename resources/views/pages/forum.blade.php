@@ -28,29 +28,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Form komentar yang awalnya tersembunyi -->
-                            {{-- <div class="collapse mt-3" id="commentForm1">
-                                <div class="card card-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="comment1">Tambahkan Komentar:</label>
-                                            <textarea class="form-control" id="comment1" rows="3"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary"><i
-                                                class="fas fa-paper-plane"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <!-- Daftar komentar -->
-                            <div class="card card-body mt-3 comment-list" style="display: none;">
-                                <h6 class="card-subtitle mb-2 text-muted">Komentar</h6>
-                                <ul class="list-group">
-                                    <!-- Komentar akan ditambahkan secara dinamis melalui JavaScript -->
-                                </ul>
-                            </div> --}}
-
                         </div>
                     </div>
                 @endforeach

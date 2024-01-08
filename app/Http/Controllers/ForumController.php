@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use App\Models\Like;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -38,36 +39,42 @@ class ForumController extends Controller
 
     public function showThreadDetail(Thread $thread)
     {
-        $thread->load('comments');
+        $thread->load(['comments' => function($query){
+            $query->latest();
+        }]);
 
         return view('pages.detail', compact('thread'));
     }
 
-    public function showComment(Comment $comment)
-    {
-        $comment = Comment::orderByDesc('id')->get();
-        
-    }
+
 
     public function like(Thread $thread)
     {
-        Like::create([
+        $data = [
             'thread_id'=>$thread->id,
             'user_id' => Auth::user()->id
-        ]);
+        ];
+
+        $like = Like::where($data);
+        if ($like->count() > 0) {
+            $like->delete();
+        } else {
+            Like::create($data);
+        }
 
         return redirect()->back();
+        
     }
 
-    public function dislike(Thread $thread)
-    {
-        Like::where([
-            'thread_id'=>$thread->id,
-            'user_id' => Auth::user()->id
-        ])->delete();
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $threads = Thread::where('title', 'LIKE', '%' . $query . '%')
+                     ->orWhere('content', 'LIKE', '%' . $query . '%')
+                     ->get();
 
-        return redirect()->back();
-    }
+    return view('pages.forum', compact('threads'));
+}
 
     
 }

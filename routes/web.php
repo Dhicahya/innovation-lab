@@ -48,7 +48,9 @@ Route::prefix('/admin/')->middleware('auth')->group(function(){
 
 Route::get('/', function(){return view('pages.home');})->name('home');
 
-Route::get("forum", [ForumController::class, 'show'])->name('forum');
+Route::get("/forum", [ForumController::class, 'show'])->name('forum');
+
+Route::get('/search', [ForumController::class, 'search'])->name('forum.search');
 
 
 Route::middleware('auth')->group(function(){

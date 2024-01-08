@@ -18,10 +18,9 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Judul</th>
                         <th scope="col">Kategori</th>
-                        <th scope="col">title</th>
-                        <th scope="col">status</th>
+                        <th scope="col">Judul Thread</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -29,7 +28,6 @@
                     @foreach ($data as $item)
                     <tr>
                         <th scope="row">{{$item->id}}</th>
-                        <td>{{$item->name}}</td>
                         <td>{{$item->category->name}}</td>
                         <td>{{$item->title}}</td>
                         <td>

@@ -18,8 +18,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Thread</th>
+                        <th scope="col">Judul Thread</th>
                         <th scope="col">Content</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>

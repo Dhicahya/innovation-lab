@@ -26,8 +26,13 @@ class Thread extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes() : HasMany {
-        return $this->hasMany(Like::class);
+    // public function likes() : HasMany {
+    //     return $this->hasMany(Like::class);
+    // }
+
+    public function hasLike()
+    {
+        return $this->hasOne(Like::class)->where('likes.user_id', Auth::user()->id);
     }
 
    
@@ -35,6 +40,13 @@ class Thread extends Model
     {
         return $this->hasMany(Like::class)->count();
     }
+
+    public function totalComment()
+    {
+        return $this->hasMany(Comment::class)->count();
+    }
+
+
 
     
 }

@@ -1,14 +1,14 @@
 @extends('layouts.forum')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="mt-5">
         <div class="row justify-content-center">
             <div class="col">
                     <div class="card mt-5 shadow">
                         <div class="card-body">
                             <div class="user-info mb-3">
-                                <span class="username">{{ '@'.(@$item->user->nama ?? 'Pengguna') }}</span>
+                                <span class="username">{{ '@'.(@$thread->user->nama ?? 'Pengguna') }}</span>
                             </div>
                             <h5 class="card-title"><strong>{{ $thread->title }}</strong></h5>
                             <p class="card-text">{{ $thread->category->name }}</p>
@@ -17,23 +17,28 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
+                                    {{-- <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
                                         <i class="far fa-thumbs-up"></i>
                                         ({{ $thread->totalLike() }})
-                                    </a>    
-                                    {{-- @if ()
-                                    <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
+                                    </a>     --}}
+                                    @if ($thread->hasLike)
+                                    <a href="{{ route('thread.like', $thread) }}" class="btn btn-outline-primary">
                                         <i class="far fa-thumbs-up"></i>
+                                        ({{ $thread->totalLike() }})
                                     </a>    
                                     @else
                                     <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
                                         <i class="fas fa-thumbs-up"></i>
+                                        ({{ $thread->totalLike() }})
                                     </a> 
-                                    @endif --}}
+                                    @endif
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <button type="button" class="btn btn-success comment-btn" data-toggle="collapse"
-                                        data-target="#commentForm1"><i class="fas fa-comment"></i></button>
+                                        data-target="#commentForm1"><i class="fas fa-comment"></i>
+                                        ({{ $thread->totalComment() }})
+                                    
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +62,7 @@
 
                         <!-- Daftar komentar -->
                         <div class="card">
-                            <div class="card-body ">
+                            <div class="card-body">
                             <h4 class="card-title mb-2">Komentar</h4>
                             <div class="list-group">
                                 <!-- Komentar akan ditambahkan secara dinamis melalui JavaScript -->
