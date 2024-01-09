@@ -51,5 +51,13 @@ class Thread extends Model
         });
     }
 
+
+    public function scopeCategory($query, array $filters)
+    {
+        $query->when($filters['category_id'] ?? false, function($query, $category)
+        {
+            return $query->where('category_id', $category);
+        });
+    }
     
 }

@@ -13,7 +13,7 @@ class ForumController extends Controller
     public function show(Request $request)
     {   
 
-        $thread = Thread::latest()->filter(request(['search']))->get();
+        $thread = Thread::latest()->filter(request(['search']))->Category(request(['category_id']))->get();
 
         return view('pages.forum', compact('thread'));
     }
