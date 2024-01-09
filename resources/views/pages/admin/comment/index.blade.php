@@ -25,17 +25,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
+                    @foreach ($data as $index=>$item)
                     <tr>
                         <th scope="row">{{$item->id}}</th>
-                        <td>{{$item->name}}</td>
+                        <td>{{$item->thread->title}}</td>
+                        <td>{{$item->content}}</td>
                         <td>
                             <a class="btn btn-secondary" href="{{route('comment.status', $item)}}">
                             {{$item->status ?
                             "Aktif":"Tidak Aktif"}}</a>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="/{{route('comment.edit', $item)}}">
+                            <a class="btn btn-primary" href="{{route('comment.edit', $item)}}">
                                 Edit
                             </a>
                             <a class="btn btn-danger" onclick="deleteData('{{route('comment.delete', $item)}}')"> Hapus

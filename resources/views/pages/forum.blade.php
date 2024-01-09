@@ -1,8 +1,9 @@
 @extends('layouts.forum')
 
 @section('content')
+    @if ($thread->count())
     <div class="container mt-5">
-        <div class="mt-5">
+        <div class="my-5">
             <div class="row">
                 @foreach ($thread as $item)
                 <div class="col-md-6">
@@ -34,4 +35,13 @@
             </div>
         </div>
     </div>
+    @else
+        <div class="container mt-5">
+            <div class="my-5">
+                <div class="mt-5">
+                    <p class="text-center fs-4">Tidak Ada Thread</p>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

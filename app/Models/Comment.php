@@ -15,4 +15,8 @@ class Comment extends Model
         return $this->belongsTo(user::class);
     }
 
+    public function thread() : BelongsTo {
+        return $this->belongsTo(Thread::class);
+    }
+
 }

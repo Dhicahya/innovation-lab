@@ -9,16 +9,6 @@ use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::prefix('/admin/')->middleware('auth')->group(function(){
     Route::get('/', function(){return view('pages.admin.dashboard');})->name('dashboard');
@@ -49,9 +39,6 @@ Route::prefix('/admin/')->middleware('auth')->group(function(){
 Route::get('/', function(){return view('pages.home');})->name('home');
 
 Route::get("/forum", [ForumController::class, 'show'])->name('forum');
-
-Route::get('/search', [ForumController::class, 'search'])->name('forum.search');
-
 
 Route::middleware('auth')->group(function(){
     Route::get("profil", [ProfilController::class, 'index'])->name('profil');

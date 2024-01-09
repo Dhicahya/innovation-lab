@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 class ForumController extends Controller
 {
     public function show(Request $request)
-    {
-        $thread = Thread::orderByDesc('id')->get();
+    {   
+
+        $thread = Thread::latest()->filter(request(['search']))->get();
+
         return view('pages.forum', compact('thread'));
     }
 
@@ -65,16 +67,5 @@ class ForumController extends Controller
         return redirect()->back();
         
     }
-
-    public function search(Request $request)
-{
-    $query = $request->input('query');
-    $threads = Thread::where('title', 'LIKE', '%' . $query . '%')
-                     ->orWhere('content', 'LIKE', '%' . $query . '%')
-                     ->get();
-
-    return view('pages.forum', compact('threads'));
-}
-
     
 }
