@@ -98,7 +98,6 @@
 </script>
 
 <script>
-    console.log('abc')
     $('#selectCategoryThread').on({
         "focus": function() {
             console.log('clicked!', this, this.value);
@@ -116,3 +115,25 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+  $(".js-example-tags").select2({
+  tags: true,
+  theme: "bootstrap"
+});
+</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+  $('#summernote').summernote({
+    toolbar: [
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']]
+  ]
+  });
+});
+</script>

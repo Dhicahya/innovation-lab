@@ -13,12 +13,14 @@
             <form action="{{ route('forum') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <ul>
                 <li>
+                    <div class="form-group">
                       <select class="form-control mx-3" id="selectCategoryThread" name="category_id">
-                      <option value="">Semua Kategori</option>
+                      <option value="" selected>Semua Kategori</option>
                         @foreach (App\Models\Category::all() as $category )
                         <option value="{{$category->id}}" {{ $category->id == request('category_id') ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                       </select>
+                    </div>
                 </li>
                 <li>
                         <div class="input-group">
@@ -63,11 +65,17 @@
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown">
                         <a class="dropdown-item text-sm-start" href="{{ route('profil') }}">
-                            Profile
+                            <span>
+                                <i class="fas fa-user"></i>
+                                Profile
+                            </span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                            Logout
+                            <span>
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </span>
                         </a>
                     </div>
                     @else

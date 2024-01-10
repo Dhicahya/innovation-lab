@@ -12,15 +12,11 @@
                             </div>
                             <h5 class="card-title"><strong>{{ $thread->title }}</strong></h5>
                             <p class="card-text">{{ $thread->category->name }}</p>
-                            <p class="card-text text-justify">{{ $thread->content }}</p>
+                            <p class="card-text text-justify">{!! nl2br($thread->content) !!}</p>
                         </div>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-6">
-                                    {{-- <a href="{{ route('thread.like', $thread) }}" class="btn btn-primary">
-                                        <i class="far fa-thumbs-up"></i>
-                                        ({{ $thread->totalLike() }})
-                                    </a>     --}}
                                     @if ($thread->hasLike)
                                     <a href="{{ route('thread.like', $thread) }}" class="btn btn-outline-primary">
                                         <i class="far fa-thumbs-up"></i>

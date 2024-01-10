@@ -10,6 +10,10 @@
 # General
 --------------------------------------------------------------*/
 
+.readmore-btn {
+  background: #3498db;
+}
+
 .text-justify{
   text-align: justify;
 }
