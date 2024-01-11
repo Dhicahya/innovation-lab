@@ -27,7 +27,7 @@
                 <tbody>
                     @foreach ($data as $index=>$item)
                     <tr>
-                        <th scope="row">{{$item->id}}</th>
+                        <th scope="row">{{$index+1}}</th>
                         <td>{{$item->category->name}}</td>
                         <td>{{$item->title}}</td>
                         <td>

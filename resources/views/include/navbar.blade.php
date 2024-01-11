@@ -24,15 +24,21 @@
                           </a>
                           <!-- Dropdown - User Information -->
                           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                              aria-labelledby="userDropdown">
-                              <a class="dropdown-item text-sm-start" href="{{ route('profil') }}">
-                                  Profile
-                              </a>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                  Logout
-                              </a>
-                          </div>
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item text-sm-start" href="{{ route('profil') }}">
+                                    <span>
+                                        <i class="fas fa-user"></i>
+                                        Profile
+                                    </span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <span>
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Logout
+                                    </span>
+                                </a>
+                            </div>
                       </li>
                   @else
                       <li><a class="getstarted scrollto" href="{{ route('login') }}">Login</a></li>

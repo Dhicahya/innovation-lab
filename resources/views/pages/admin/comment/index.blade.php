@@ -19,7 +19,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Judul Thread</th>
-                        <th scope="col">Content</th>
+                        <th scope="col">Isi Komentar</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -28,8 +28,8 @@
                     @foreach ($data as $index=>$item)
                     <tr>
                         <th scope="row">{{$item->id}}</th>
-                        <td>{{$item->thread->title}}</td>
-                        <td>{{$item->content}}</td>
+                        <td>{{$item->thread ? $item->thread->title : 'Tidak Ada Judul'}}</td>
+                        <td class="text-truncate" style="max-width: 300px;">{{$item->content}}</td>
                         <td>
                             <a class="btn btn-secondary" href="{{route('comment.status', $item)}}">
                             {{$item->status ?

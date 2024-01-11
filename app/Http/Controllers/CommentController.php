@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Thread;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -46,9 +47,9 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        $thread = Thread::findOrFail($threadId);
+        $thread = Thread::findOrFail($comment->thread_id);
 
-        return view('pages.detail', compact('comment'));        
+        return view('pages.detail', compact('comment', 'thread'));        
     }
 
     /**

@@ -17,7 +17,7 @@
                         <select class="form-control js-example-tags" id="title" name="title">
                           <option value=""></option>
                           @foreach (\App\Models\Thread::all() as $item)
-                          <option><a href="">{{ $item->title }}</a></option>
+                          <option>{{ $item->title }}<a href=""><i class="fas fa-caret-right"></i></a></option>
                           @endforeach  
                         </select>
                     </div>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="textContent" class="col-form-label">Konten</label>
-                        <textarea class="form-control" id="summernote" name="content"></textarea>
+                        <textarea class="form-control" name="content"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">

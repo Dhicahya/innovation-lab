@@ -10,13 +10,19 @@
 # General
 --------------------------------------------------------------*/
 
-.readmore-btn {
-  background: #3498db;
+
+.select-category {
+  border: 1;
+  border-color: #3498db;
+  padding: 6px;
+  border-radius: 6px;
+  color: #3498db;
 }
 
-.text-justify{
+.text-justify {
   text-align: justify;
 }
+
 
 body {
   font-family: "Open Sans", sans-serif;

@@ -41,6 +41,11 @@ class Thread extends Model
         return $this->hasMany(Comment::class)->count();
     }
 
+    public function totalThread()
+    {
+        return $this->hasMany(Thread::class)->count();
+    }
+
     public function scopeFilter($query, array $filters)
     {
         
