@@ -7,22 +7,29 @@
                 <div class="col">
                     <div class="card mt-5 shadow">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between">
+                            @if (auth()->user() && auth()->user()->id == $thread->user_id)
+                                <div class="d-flex justify-content-between">
+                                    <div class="user-info mb-3">
+                                        <span class="username">{{ '@' . (@$thread->user->nama ?? 'Pengguna') }}</span>
+                                    </div>
+                                    <div class="dropdown no-arrow">
+                                        <a class="btn btn-white dropdown-toggle" href="#" role="button"
+                                            id="dropdownDetail" data-toggle="dropdown" aria-expanded="false"
+                                            aria-haspopup="true">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownDetail">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editThreadModal">Edit</a>
+                                            <a class="dropdown-item"
+                                                onclick="deleteData('{{ route('threadDelete', $thread) }}')">Hapus</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
                                 <div class="user-info mb-3">
                                     <span class="username">{{ '@' . (@$thread->user->nama ?? 'Pengguna') }}</span>
                                 </div>
-                                <div class="dropdown no-arrow">
-                                    <a class="btn btn-white dropdown-toggle" href="#" role="button" id="dropdownDetail"
-                                        data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownDetail">
-                                        <a class="dropdown-item" href="#">Edit</a>
-                                        <a class="dropdown-item" href="#">Hapus</a>
-                                    </div>
-                                </div>
-                                
-                            </div>
+                            @endif
                             <h5 class="card-title"><strong>{{ $thread->title }}</strong></h5>
                             <p class="card-text">{{ $thread->category->name }}</p>
                             <p class="card-text">{!! nl2br($thread->content) !!}</p>
@@ -77,7 +84,33 @@
                                     <!-- Komentar akan ditambahkan secara dinamis melalui JavaScript -->
                                     @foreach ($thread->comments as $item)
                                         <div class="card my-1 p-2">
-                                            <span class="card-title">{{ '@' . (@$item->user->nama ?? 'Pengguna') }}</span>
+                                            @if (auth()->user() && auth()->user()->id == $item->user_id)
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="">
+                                                        <span
+                                                            class="card-title">{{ '@' . (@$item->user->nama ?? 'Pengguna') }}</span>
+                                                    </div>
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="btn btn-white dropdown-toggle" href="#"
+                                                            role="button" id="dropdownDetail" data-toggle="dropdown"
+                                                            aria-expanded="false" aria-haspopup="true">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownDetail">
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editCommentModal">Edit</a>
+                                                            <a class="dropdown-item"
+                                                                onclick="deleteData('{{ route('commentDelete', $item) }}')">
+                                                                Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="">
+                                                    <span
+                                                        class="card-title">{{ '@' . (@$item->user->nama ?? 'Pengguna') }}</span>
+                                                </div>
+                                            @endif
                                             <p class="card-text"> {{ $item->content }}</p>
                                         </div>
                                     @endforeach
@@ -86,6 +119,56 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit thread modal -->
+    <div class="modal" role="dialog" id="editThreadModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Thread</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editThreadForm" method="POST" action="{{ route('thread.edit', $thread) }}">
+                        @csrf
+                        @method('PUT') <!-- Add this line to handle PUT request for updating -->
+                        <div class="form-group">
+                            <label for="editedContent">Edited Content:</label>
+                            <textarea class="form-control" id="editedContent" name="editedContent" rows="8">{{ $thread->content }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit comment modal -->
+    <div class="modal" role="dialog" id="editCommentModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCommentForm" method="POST" action="{{ route('comment.edit', $item) }}">
+                        @csrf
+                        @method('PUT') <!-- Add this line to handle PUT request for updating -->
+                        <div class="form-group">
+                            <label for="editedContent">Edited Content:</label>
+                            <textarea class="form-control" id="editedContent" name="editedContent" rows="8">{{ $item->content }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
                 </div>
             </div>
         </div>

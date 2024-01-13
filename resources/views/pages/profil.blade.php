@@ -13,8 +13,8 @@
                         </div>
                         <div class="card-body text-center">
                             @if ($user->image_path)
-                                <img src="/storage/{{ $user->image_path }}" alt="Profile Picture"
-                                    class="rounded-circle mb-3" style="width: 150px; height: 150px;">
+                                <img src="/storage/{{ $user->image_path }}" alt="Profile Picture" class="rounded-circle mb-3"
+                                    style="width: 150px; height: 150px;">
                             @else
                                 <img src="/img/undraw_profile.svg" alt="Profile Picture" class="rounded-circle mb-3"
                                     style="width: 150px; height: 150px;">
@@ -35,9 +35,9 @@
         </div>
         <h3 class="">Thread ({{ $user->thread->count() }})</h3>
         <hr style="height:3px;background-color:black; border-radius:5px;">
-        @if ($user->thread->count())
+        @if (auth()->user()->thread_Id)
             <div class="row">
-            @foreach ($user->thread as $item)
+                @foreach ($user->thread as $item)
                     <div class="col-md-6">
                         <div class="card mt-5 shadow">
                             <div class="card-body content-thread" style="max-height : 250px;">
@@ -53,25 +53,25 @@
                                 <div class="justify-content-center navbar">
                                     <a href="{{ route('thread.detail', $item) }}" type="button"
                                         class="getstarted scrollto m-0">
-                                        <i class="fas fa-indent mr-1"></i>
                                         Baca Selengkapnya
+                                        <i class="fas fa-indent mr-1"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
         @else
             <div class="container mt-5">
-            <div class="my-5">
-                <div class="mt-5">
-                    <p class="text-center fs-3">Tidak Ada Thread</p>
+                <div class="my-5">
+                    <div class="mt-5">
+                        <p class="text-center fs-3">Tidak Ada Thread</p>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
-        
+
     </div>
 
     <!-- Edit Profile Modal -->
@@ -111,8 +111,8 @@
                         </div>
                         <div class="form-group">
                             <label for="inputConfirmPassword">Konfirmasi Password</label>
-                            <input type="password" class="form-control" id="password-confirm" name="password_confirmation"
-                                placeholder="Konfirmasi Password">
+                            <input type="password" class="form-control" id="password-confirm"
+                                name="password_confirmation" placeholder="Konfirmasi Password">
                         </div>
                         <div class="form-group">
                             <label for="inputProfilePicture">Foto Profil</label>

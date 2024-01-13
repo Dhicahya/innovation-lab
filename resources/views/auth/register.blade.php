@@ -28,7 +28,7 @@
                                         placeholder="Username" required>
                                 </div>
                                 <div class="form-group my-4">
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
                                         placeholder="Masukkan Email" required>
                                 </div>
                                 <div class="input-group my-4">

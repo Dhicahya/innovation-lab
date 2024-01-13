@@ -50,12 +50,5 @@
     </div>
 
 </div>
-<script>
-    function deleteData(url) {
-        if (confirm("Yakin?")) {
-            window.location.href = url;
-        }
-    }
-</script>
 <!-- /.container-fluid -->
 @endsection

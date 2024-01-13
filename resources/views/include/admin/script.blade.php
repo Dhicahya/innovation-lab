@@ -24,3 +24,11 @@
         $('#categoryTable').DataTable();
     });
 </script>
+
+<script>
+    function deleteData(url) {
+        if (confirm("Yakin?")) {
+            window.location.href = url;
+        }
+    }
+</script>

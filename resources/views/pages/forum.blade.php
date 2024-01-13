@@ -8,7 +8,7 @@
                     @foreach ($thread as $item)
                         <div class="col-md-6">
                             <div class="card mt-5 shadow">
-                                <div class="card-body content-thread" style="max-height : 250px;">
+                                <div class="card-body content-thread" style="height : 250px;">
                                     <div class="user-info mb-3">
                                         <span class="username">{{ '@' . (@$item->user->nama ?? 'Pengguna') }}</span>
                                     </div>

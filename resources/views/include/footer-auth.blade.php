@@ -1,5 +1,5 @@
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="mt-2">
+  <footer id="footer" class="mt-5">
     <div class="container">
       <div class="row d-flex align-items-center">
         <div class="col-lg-6 text-lg-left text-center">

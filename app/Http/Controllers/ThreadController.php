@@ -71,7 +71,7 @@ class ThreadController extends Controller
     public function destroy(Thread $thread)
     {
         $thread->delete();
-        return redirect()->route('thread.index');
+        return redirect()->back();
     }
 
     public function status(Thread $thread)

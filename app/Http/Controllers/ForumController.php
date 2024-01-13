@@ -67,5 +67,47 @@ class ForumController extends Controller
         return redirect()->back();
         
     }
+
+    public function destroyThread(Thread $thread)
+    {
+        $thread->delete();
+        return redirect()->route('forum');
+    }
     
+    public function destroyComment(Comment $comment)
+    {
+        $comment->delete();
+        return redirect()->back();
+    }
+
+    public function editThread(Request $request, Thread $thread)
+    {
+        $request->validate([
+        'editedContent' => 'required|string',
+        ]);
+
+        if (auth()->user() && auth()->user()->id == $thread->user_id) {
+            $thread->update([
+            'content' => $request->input('editedContent'),
+        ]);
+    }
+
+        return redirect()->back(); 
+    }
+
+    public function editComment(Request $request, Comment $comment)
+    {
+        $request->validate([
+        'editedContent' => 'required|string',
+        ]);
+
+        if (auth()->user() && auth()->user()->id == $comment->user_id) {
+            $comment->update([
+            'content' => $request->input('editedContent'),
+        ]);
+
+            return redirect()->back(); 
+        }
+    }
+
 }

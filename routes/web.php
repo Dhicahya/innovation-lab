@@ -30,9 +30,8 @@ Route::prefix('/admin/')->middleware('auth')->group(function(){
     Route::get('comment/{comment}/delete', [CommentController::class, 'destroy'])->name('comment.delete');
     Route::get('comment/{comment}/status', [CommentController::class, 'status']) ->name('comment.status');
 
-    Route::get('forum/thread/{thread}', [ForumController::class, 'showThreadDetail'])->name('thread.detail');
-    Route::get('forum/thread/{thread}/like', [ForumController::class, 'like'])->name('thread.like');
-    Route::get('forum/thread/{thread}/dislike', [ForumController::class, 'dislike'])->name('thread.dislike');
+
+
 
 });
 
@@ -46,6 +45,17 @@ Route::middleware('auth')->group(function(){
 
     
     Route::post("buat-thread", [ForumController::class, 'store'])->name(('buat-thread'));
+    
+    Route::get('forum/thread/{thread}', [ForumController::class, 'showThreadDetail'])->name('thread.detail');
+    Route::get('forum/thread/{thread}/like', [ForumController::class, 'like'])->name('thread.like');
+    Route::get('forum/thread/{thread}/dislike', [ForumController::class, 'dislike'])->name('thread.dislike');
+    Route::get('forum/thread/{thread}/delete', [ForumController::class, 'destroyThread'])->name('threadDelete');
+    Route::get('forum/comment/{comment}/delete', [ForumController::class, 'destroyComment'])->name('commentDelete');
+    
+    Route::put('forum/thread/{thread}/edit', [ForumController::class, 'editThread'])->name('thread.edit');
+    Route::put('forum/comment/{comment}/edit', [ForumController::class, 'editComment'])->name('comment.edit');
+
+
 
 });
 
