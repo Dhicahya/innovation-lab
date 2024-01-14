@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('/admin/')->middleware('auth')->group(function(){
+Route::prefix('/admin/')->middleware('auth', 'can:admin-only')->group(function(){
     Route::get('/', function(){return view('pages.admin.dashboard');})->name('dashboard');
 
 

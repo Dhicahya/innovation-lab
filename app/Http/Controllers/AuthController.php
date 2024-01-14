@@ -76,4 +76,13 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
+
+    public function boot()
+{
+    $this->registerPolicies();
+
+    Gate::define('admin-only', function ($user) {
+        return $user->role === 'admin';
+    });
+}
 }
