@@ -77,12 +77,12 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
-    public function boot()
-{
-    $this->registerPolicies();
+    // public function boot()
+    // {
+    //     $this->registerPolicies();
 
-    Gate::define('admin-only', function ($user) {
-        return $user->role === 'admin';
-    });
-}
+    //     Gate::define('admin-only', function ($user) {
+    //         return $user->role === 'admin';
+    //     });
+    // }
 }

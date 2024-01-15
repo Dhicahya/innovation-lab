@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('/admin/')->middleware('auth', 'can:admin-only')->group(function(){
+Route::prefix('/admin/')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/', function(){return view('pages.admin.dashboard');})->name('dashboard');
 
 
@@ -54,9 +54,6 @@ Route::middleware('auth')->group(function(){
     
     Route::put('forum/thread/{thread}/edit', [ForumController::class, 'editThread'])->name('thread.edit');
     Route::put('forum/comment/{comment}/edit', [ForumController::class, 'editComment'])->name('comment.edit');
-
-
-
 });
 
 

@@ -14,7 +14,7 @@
                         <div class="card-body text-center">
                             @if ($user->image_path)
                                 <img src="/storage/{{ $user->image_path }}" alt="Profile Picture" class="rounded-circle mb-3"
-                                    style="width: 150px; height: 150px;">
+                                    style="width: 150px; height: 150px; object-fit: cover;">
                             @else
                                 <img src="/img/undraw_profile.svg" alt="Profile Picture" class="rounded-circle mb-3"
                                     style="width: 150px; height: 150px;">
@@ -33,9 +33,10 @@
                 </div>
             </div>
         </div>
+
         <h3 class="">Thread ({{ $user->thread->count() }})</h3>
         <hr style="height:3px;background-color:black; border-radius:5px;">
-        @if (auth()->user()->thread_Id)
+        @if (auth()->user()->thread)
             <div class="row">
                 @foreach ($user->thread as $item)
                     <div class="col-md-6">

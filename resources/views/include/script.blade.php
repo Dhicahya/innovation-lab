@@ -17,29 +17,21 @@
 <script src="/assets/js/main.js"></script>
 
 <!-- Bootstrap JS dan Popper.js -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
-</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <!-- Font Awesome JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
-<!-- menyembunyikan komentar -->
+{{-- hidden comment --}}
 <script>
     $(document).ready(function() {
         $(".comment-btn").click(function() {
             var commentFormId = $(this).data('target');
             var commentList = $(commentFormId).next('.card').find('.comment-list');
 
-            // Toggle visibility of the comment list
             $(commentList).toggle('slow');
-
-            // Tambahkan kode untuk menampilkan komentar di sini
-            // Misalnya, dengan menggunakan $(commentList).append('<li>Komentar baru</li>');
 
         });
     });
@@ -47,6 +39,7 @@
 
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
+{{-- toggle password --}}
 <script>
     const togglePassword = document
         .querySelector('#togglePassword');
@@ -72,24 +65,16 @@
     const togglePasswordConfirm = document
         .querySelector('#togglePasswordConfirm');
     const passwordConfirm = document.querySelector('#password-confirm');
-    // togglePasswordConfirm.addEventListener('click', () => {
-    //     // Toggle the type attribute using
-    //     // getAttribure() method
-    //     const type = passwordConfirm
-    //         .getAttribute('type') === 'password' ?
-    //         'text' : 'password';
-    //     passwordConfirm.setAttribute('type', type);
-    //     // Toggle the eye and bi-eye icon
-    //     this.classList.toggle('bi-eye');
-    // });
 </script>
 
+{{-- dropdown modal --}}
 <script>
     $(document).ready(function() {
         $('.dropdown-toggle').dropdown();
     });
 </script>
 
+{{-- filter category --}}
 <script>
     $('#selectCategoryThread').on({
         "focus": function() {
@@ -109,6 +94,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+{{-- fillter title thread --}}
 <script>
     $(".js-example-tags").select2({
         tags: true,
@@ -118,6 +104,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
+{{-- summernote text editor --}}
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
@@ -132,10 +119,27 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
+{{-- delete user confirm --}}
 <script>
     function deleteData(url) {
         if (confirm("Yakin?")) {
             window.location.href = url;
         }
     }
+</script>
+
+{{-- edit comment modal --}}
+<script>
+    $(document).ready(function() {
+        $('.edit-comment-btn').on('click', function() {
+            var commentId = $(this).data('comment-id');
+            var commentContent = $(this).data('comment-content');
+
+            $('#editCommentForm').attr('action', '/forum/comment/' + commentId + '/edit');
+
+            $('#editedCommentContent').val(commentContent);
+
+            $('#editCommentModal').modal('show');
+        });
+    });
 </script>

@@ -19,7 +19,8 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownDetail">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editThreadModal">Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#editThreadModal">Edit</a>
                                             <a class="dropdown-item"
                                                 onclick="deleteData('{{ route('threadDelete', $thread) }}')">Hapus</a>
                                         </div>
@@ -97,11 +98,11 @@
                                                             <i class="fas fa-ellipsis-v"></i>
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownDetail">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editCommentModal">Edit</a>
+                                                            <a class="dropdown-item edit-comment-btn"
+                                                                data-comment-id="{{ $item->id }}"
+                                                                data-comment-content="{{ $item->content }}">Edit</a>
                                                             <a class="dropdown-item"
-                                                                onclick="deleteData('{{ route('commentDelete', $item) }}')">
-                                                                Hapus
-                                                            </a>
+                                                                onclick="deleteData('{{ route('commentDelete', $item) }}')">Hapus</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -137,7 +138,7 @@
                 <div class="modal-body">
                     <form id="editThreadForm" method="POST" action="{{ route('thread.edit', $thread) }}">
                         @csrf
-                        @method('PUT') <!-- Add this line to handle PUT request for updating -->
+                        @method('PUT')
                         <div class="form-group">
                             <label for="editedContent">Edited Content:</label>
                             <textarea class="form-control" id="editedContent" name="editedContent" rows="8">{{ $thread->content }}</textarea>
@@ -160,12 +161,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="editCommentForm" method="POST" action="{{ route('comment.edit', $item) }}">
+                    <form id="editCommentForm" method="POST" action="{{ route('comment.edit', $thread) }}">
                         @csrf
-                        @method('PUT') <!-- Add this line to handle PUT request for updating -->
+                        @method('PUT')
                         <div class="form-group">
-                            <label for="editedContent">Edited Content:</label>
-                            <textarea class="form-control" id="editedContent" name="editedContent" rows="8">{{ $item->content }}</textarea>
+                            <label for="editedCommentContent">Edited Content:</label>
+                            <textarea class="form-control" id="editedCommentContent" name="editedContent" rows="8"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                     </form>
