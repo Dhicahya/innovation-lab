@@ -69,7 +69,7 @@
      <!-- Nav Item - Comment -->
      <li class="nav-item">
         <a class="nav-link" href="{{route('comment.index')}}">
-            <i class="far fa-comment"></i>
+            <i class="far fa-comments"></i>
             <span>Comment</span></a>
     </li>
 

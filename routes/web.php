@@ -30,6 +30,9 @@ Route::prefix('/admin/')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('comment/{comment}/delete', [CommentController::class, 'destroy'])->name('comment.delete');
     Route::get('comment/{comment}/status', [CommentController::class, 'status']) ->name('comment.status');
 
+    Route::get('dashboard/total-user', [UserController::class, 'totalUser'])->name('dashboard.totalUser');
+
+
 
 
 
