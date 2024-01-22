@@ -7,10 +7,11 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Category</h1>
+        <h1 class="h3 mb-0 text-gray-800">Kategori</h1>
         <a href="/admin/category/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Create Category</a>
+                    class="fas fa-plus fa-sm text-white-50"></i> Tambah Kategori</a>
     </div>
+    
 
     <div class="card">
         <div class="card-body">
@@ -19,7 +20,6 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Kategori</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -29,20 +29,11 @@
                         <th scope="row">{{$index+1}}</th>
                         <td>{{$item->name}}</td>
                         <td>
-                            <div class="custom-control custom-switch">
-                                <input onclick="window.location.href='{{ route('category.status', $item) }}'"
-                                    {{ $item->status ? 'checked' : '' }} type="checkbox"
-                                    class="custom-control-input" id="customSwitch{{ $index }}">
-                                <label class="custom-control-label" for="customSwitch{{ $index }}">
-                                    {{ $item->status ? 'Available' : 'Not Available Now' }}
-                                </label>
-                            </div>
-                        </td>
-                        <td>
                             <a class="btn btn-primary" href="{{route('category.edit', $item)}}">
-                                Edit
+                                <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btn btn-danger" onclick="deleteData('{{route('category.delete', $item)}}')"> Hapus
+                            <a class="btn btn-danger" onclick="deleteData('{{route('category.delete', $item)}}')">
+                                <i class="fas fa-trash-alt"></i>
                             </a>
                         </td>
                     </tr>

@@ -31,20 +31,14 @@
                                             <i class="fas fa-eye"></i>
                                         </span>
                                     </div>
-                                </div>
-                                <div class="form-group form-check mb-4">
-                                    <input type="checkbox" class="form-check-input" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                                </div>
+                                </div>                        
                                 <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i>
                                     Login</button>
                             </form>
                         </div>
                         <hr>
                         <div class="text-center small">
-                            <a href="#">Forgot Password?</a>
                             <p>Belum Punya akun? <a href="{{ route('register') }}">Daftar Sekarang!</a></p>
-
                         </div>
                     </div>
                 </div>

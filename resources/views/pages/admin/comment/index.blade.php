@@ -7,9 +7,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Comment</h1>
-        <a href="/comment/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Create Comment</a>
+        <h1 class="h3 mb-0 text-gray-800">Komentar</h1>
     </div>
 
     <div class="card">
@@ -20,26 +18,18 @@
                         <th scope="col">No</th>
                         <th scope="col">Judul Thread</th>
                         <th scope="col">Isi Komentar</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $index=>$item)
                     <tr>
-                        <th scope="row">{{$item->id}}</th>
+                        <th scope="row">{{ $index + 1 }}</th>
                         <td>{{$item->thread ? $item->thread->title : 'Tidak Ada Judul'}}</td>
                         <td class="text-truncate" style="max-width: 300px;">{{$item->content}}</td>
                         <td>
-                            <a class="btn btn-secondary" href="{{route('comment.status', $item)}}">
-                            {{$item->status ?
-                            "Aktif":"Tidak Aktif"}}</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" href="{{route('comment.edit', $item)}}">
-                                Edit
-                            </a>
-                            <a class="btn btn-danger" onclick="deleteData('{{route('comment.delete', $item)}}')"> Hapus
+                            <a class="btn btn-danger" onclick="deleteData('{{route('comment.delete', $item)}}')">
+                                <i class="fas fa-trash-alt"></i>
                             </a>
                         </td>
                     </tr>

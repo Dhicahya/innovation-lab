@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function(){
     Route::get('forum/thread/{thread}/dislike', [ForumController::class, 'dislike'])->name('thread.dislike');
     Route::get('forum/thread/{thread}/delete', [ForumController::class, 'destroyThread'])->name('threadDelete');
     Route::get('forum/comment/{comment}/delete', [ForumController::class, 'destroyComment'])->name('commentDelete');
+    Route::get('forum/comment/', [ForumController::class, 'storeComment'])->name('commentStore');
     
     Route::put('forum/thread/{thread}/edit', [ForumController::class, 'editThread'])->name('thread.edit');
     Route::put('forum/comment/{comment}/edit', [ForumController::class, 'editComment'])->name('comment.edit');

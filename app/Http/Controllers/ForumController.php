@@ -95,6 +95,19 @@ class ForumController extends Controller
         return redirect()->back(); 
     }
 
+    public function storeComment(Request $request)
+    {
+        $data = $request->validate([
+            'thread_id' => 'required|numeric',
+            'content' => 'required|string',
+        ]);
+
+        $data['user_id'] = auth()->user()->id;
+
+        Comment::create($data);
+        return redirect()->route('thread.detail', $data['thread_id']);    
+    }
+
     public function editComment(Request $request, Comment $comment)
     {
         $request->validate([

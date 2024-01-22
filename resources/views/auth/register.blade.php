@@ -50,10 +50,6 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="form-group form-check my-4">
-                                    <input type="checkbox" class="form-check-input" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Remember Me</label>
-                                </div>
                                 <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i>
                                     Register</button>
                             </form>

@@ -7,6 +7,15 @@
                 <div class="col">
                     <div class="card mt-5 shadow">
                         <div class="card-body">
+                             @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             @if (auth()->user() && auth()->user()->id == $thread->user_id)
                                 <div class="d-flex justify-content-between">
                                     <div class="user-info mb-3">
@@ -63,7 +72,7 @@
                         <!-- Form komentar yang awalnya tersembunyi -->
                         <div class="collapse mt-3" id="commentForm1">
                             <div class="card card-body">
-                                <form method="POST" action="{{ route('comment.store') }}">
+                                <form  action="{{ route('commentStore') }}">
                                     @csrf
                                     <input type="hidden" name="thread_id" value="{{ $thread->id }}">
                                     <div class="form-group">
@@ -102,7 +111,9 @@
                                                                 data-comment-id="{{ $item->id }}"
                                                                 data-comment-content="{{ $item->content }}">Edit</a>
                                                             <a class="dropdown-item"
-                                                                onclick="deleteData('{{ route('commentDelete', $item) }}')">Hapus</a>
+                                                                onclick="deleteData('{{ route('commentDelete', $item) }}')">
+                                                                Hapus
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
