@@ -19,7 +19,6 @@
                                 <img src="/img/undraw_profile.svg" alt="Profile Picture" class="rounded-circle mb-3"
                                     style="width: 150px; height: 150px;">
                             @endif
-
                             <h4 class="mb-2">{{ $user->nama }}</h4>
                             <p class="text-muted mb-2">{{ '@' . $user->username }}</p>
                             <p class="text-muted mb-3">{{ $user->email }}</p>

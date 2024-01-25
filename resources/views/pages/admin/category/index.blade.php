@@ -42,7 +42,6 @@
             </table>
         </div>
     </div>
-
 </div>
 <script>
     function deleteData(url) {
