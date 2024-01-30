@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-header text-white"
                             style="background-image: radial-gradient(circle at 50% -20.71%, #2affff 0, #46adf9 50%, #2e4d6e 100%)">
-                            <h5 class="mb-0">Profil</h5>
+                            <h5 class="mb-0">PROFIL</h5>
                         </div>
                         <div class="card-body text-center">
                             @if ($user->image_path)
