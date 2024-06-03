@@ -32,10 +32,6 @@ Route::prefix('/admin/')->middleware(['auth', 'isAdmin'])->group(function(){
 
     Route::get('dashboard/total-user', [UserController::class, 'totalUser'])->name('dashboard.totalUser');
 
-
-
-
-
 });
 
 Route::get('/', function(){return view('pages.home');})->name('home');
