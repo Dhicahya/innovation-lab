@@ -1,5 +1,7 @@
 @extends('layouts.forum')
 
+@section('title', 'forum')
+
 @section('content')
     @if ($thread->count())
         <div class="container mt-5">

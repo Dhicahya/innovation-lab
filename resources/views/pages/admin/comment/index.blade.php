@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Page Comment')
+@section('title', 'Komentar')
 
 @section('content')
 <div class="container-fluid">

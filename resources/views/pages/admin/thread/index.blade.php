@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Page Thread')
+@section('title', 'Thread')
 
 @section('content')
 <div class="container-fluid">
